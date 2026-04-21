@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 25% 7%;
+    --foreground: 220 20% 92%;
+
+    --card: 230 25% 11%;
+    --card-foreground: 220 20% 92%;
+
+    --popover: 230 25% 11%;
+    --popover-foreground: 220 20% 92%;
+
+    --primary: 270 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 230 20% 16%;
+    --secondary-foreground: 220 20% 92%;
+
+    --muted: 230 20% 14%;
+    --muted-foreground: 230 15% 55%;
+
+    --accent: 270 40% 18%;
+    --accent-foreground: 270 80% 75%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 270 20% 18%;
+    --input: 270 20% 18%;
+    --ring: 270 80% 60%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 230 25% 9%;
+    --sidebar-foreground: 230 15% 70%;
+    --sidebar-primary: 270 80% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 270 40% 18%;
+    --sidebar-accent-foreground: 270 80% 75%;
+    --sidebar-border: 270 20% 18%;
+    --sidebar-ring: 270 80% 60%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(220 90% 60%), hsl(270 80% 60%), hsl(320 80% 55%));
+    --gradient-card: linear-gradient(145deg, hsl(230 25% 13%), hsl(270 20% 12%));
+    --gradient-glow: linear-gradient(135deg, hsl(220 90% 60% / 0.3), hsl(270 80% 60% / 0.3), hsl(320 80% 55% / 0.3));
+
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', 'Inter', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-size: 16px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-hero);
+  }
+  .glass-card {
+    background: linear-gradient(145deg, hsl(230 25% 12% / 0.8), hsl(270 20% 10% / 0.6));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(270 30% 30% / 0.3);
+    box-shadow: 0 8px 32px hsl(270 80% 30% / 0.1), inset 0 1px 0 hsl(270 50% 60% / 0.1);
+  }
+  .glass-card-3d {
+    background: linear-gradient(145deg, hsl(230 25% 14% / 0.9), hsl(270 20% 10% / 0.7));
+    backdrop-filter: blur(24px);
+    border: 1px solid hsl(270 40% 35% / 0.4);
+    box-shadow:
+      0 20px 60px hsl(270 80% 20% / 0.3),
+      0 4px 16px hsl(220 80% 30% / 0.2),
+      inset 0 1px 0 hsl(270 50% 70% / 0.15),
+      inset 0 -1px 0 hsl(270 30% 20% / 0.3);
+    transform: perspective(1000px) rotateX(1deg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .glass-card-3d:hover {
+    transform: perspective(1000px) rotateX(0deg) translateY(-4px);
+    box-shadow:
+      0 30px 80px hsl(270 80% 30% / 0.4),
+      0 8px 24px hsl(320 80% 40% / 0.2),
+      inset 0 1px 0 hsl(270 50% 70% / 0.2),
+      inset 0 -1px 0 hsl(270 30% 20% / 0.3);
+    border-color: hsl(270 60% 50% / 0.5);
+  }
+  .section-padding {
+    @apply py-20 md:py-28 px-4;
+  }
+  .neon-glow {
+    text-shadow: 0 0 10px hsl(270 80% 60% / 0.5), 0 0 40px hsl(270 80% 60% / 0.2), 0 0 80px hsl(320 80% 55% / 0.1);
+  }
+  .border-glow {
+    box-shadow: 0 0 15px hsl(270 80% 60% / 0.3), 0 0 30px hsl(270 80% 60% / 0.1);
+  }
+}
+
+/* Animated mesh gradient background */
+.mesh-gradient-bg {
+  position: relative;
+  overflow: hidden;
+}
+.mesh-gradient-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, hsl(220 90% 50% / 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 10%, hsl(270 80% 50% / 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 70% 80%, hsl(320 80% 50% / 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 60% at 20% 90%, hsl(200 80% 40% / 0.08) 0%, transparent 50%);
+  animation: meshShift 12s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes meshShift {
+  0% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.9; transform: scale(1.05) rotate(1deg); }
+  100% { opacity: 0.7; transform: scale(1.02) rotate(-1deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotateY(0deg); }
+  50% { transform: translateY(-12px) rotateY(2deg); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px) rotateX(0deg); }
+  50% { transform: translateY(-8px) rotateX(2deg); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(40px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(270 80% 60% / 0.3), 0 0 60px hsl(270 80% 60% / 0.1); }
+  50% { box-shadow: 0 0 40px hsl(270 80% 60% / 0.5), 0 0 80px hsl(320 80% 55% / 0.2); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 5s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-orbit {
+  animation: orbit 15s linear infinite;
+}
+
+/* 3D card tilt on hover */
+.tilt-3d {
+  transition: transform 0.4s ease;
+  transform-style: preserve-3d;
+}
+.tilt-3d:hover {
+  transform: perspective(800px) rotateY(-3deg) rotateX(3deg) scale(1.02);
+}
+
+/* Glowing border animation */
+.glow-border {
+  position: relative;
+}
+.glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, hsl(220 90% 60%), hsl(270 80% 60%), hsl(320 80% 55%), hsl(270 80% 60%));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  filter: blur(8px);
+}
+.glow-border:hover::after {
+  opacity: 0.6;
+}
+
+/* Particle-like dots */
+.particle-bg {
+  background-image: radial-gradient(circle, hsl(270 80% 60% / 0.15) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
